@@ -76,9 +76,10 @@ export default function App() {
     try {
       const res = await fetch(`/api/tasks?date=${date}`);
       const data = await res.json();
-      setTasks(data);
+      setTasks(Array.isArray(data) ? data : []);
     } catch (e) {
       console.error(e);
+      setTasks([]);
     }
   };
 
