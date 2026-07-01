@@ -5,6 +5,11 @@ import { pool, queries } from './db.js';
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+if (!process.env.DATABASE_URL) {
+  console.error('❌ CRITICAL ERROR: DATABASE_URL is not set in environment variables.');
+  console.error('If you are on Vercel, add DATABASE_URL in the project settings -> Environment Variables.');
+}
+
 app.use(cors());
 app.use(express.json());
 
